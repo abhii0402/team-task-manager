@@ -52,7 +52,8 @@ A full-stack web application for team project and task management with role-base
 ```bash
 cd server
 cp .env.example .env
-# Edit .env with your MongoDB URI
+# Optional: Edit .env with your MongoDB URI. 
+# If left empty, it will auto-start an in-memory database!
 npm install
 npm run dev
 ```
@@ -65,6 +66,7 @@ npm run dev
 ```
 
 App runs at `http://localhost:5173`, API at `http://localhost:5000`.
+**Note**: The backend auto-detects if you haven't set a MongoDB URI and starts a local in-memory instance for testing.
 
 ## 🌐 API Endpoints
 
