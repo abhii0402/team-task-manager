@@ -70,7 +70,7 @@ export default function Dashboard() {
         <div>
           <h2 className="section-title">Recent Tasks</h2>
           {data?.recentTasks?.length > 0 ? (
-            <div className="table-container">
+            <div className="table-container stagger-in">
               <table>
                 <thead><tr><th>Task</th><th>Status</th><th>Priority</th></tr></thead>
                 <tbody>
@@ -85,14 +85,17 @@ export default function Dashboard() {
               </table>
             </div>
           ) : (
-            <div className="card empty-state"><p>No tasks yet. Create a project to get started.</p></div>
+            <div className="card empty-state" style={{ borderStyle: 'dashed' }}>
+              <HiOutlineClipboardList />
+              <p>No recent tasks. Everything is up to date!</p>
+            </div>
           )}
         </div>
 
         <div>
           <h2 className="section-title">Your Projects</h2>
           {data?.projects?.length > 0 ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }} className="stagger-in">
               {data.projects.map(p => (
                 <div key={p._id} className="card" style={{ cursor: 'pointer', padding: 16, display: 'flex', alignItems: 'center', gap: 12 }}
                   onClick={() => navigate(`/projects/${p._id}`)}>
@@ -102,7 +105,10 @@ export default function Dashboard() {
               ))}
             </div>
           ) : (
-            <div className="card empty-state"><p>No projects yet.</p></div>
+            <div className="card empty-state" style={{ borderStyle: 'dashed' }}>
+              <HiOutlineFolder />
+              <p>No projects yet. Start by creating one!</p>
+            </div>
           )}
         </div>
       </div>

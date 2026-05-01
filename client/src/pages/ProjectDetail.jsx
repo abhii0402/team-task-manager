@@ -176,13 +176,13 @@ export default function ProjectDetail() {
                 <span className="kanban-column-title" style={{ color: col.color }}>{col.label}</span>
                 <span className="kanban-count">{colTasks.length}</span>
               </div>
-              <div className="kanban-tasks">
+              <div className="kanban-tasks stagger-in">
                 {colTasks.map(t => (
-                  <div key={t._id} className="task-card" onClick={() => openEditTask(t)}>
+                  <div key={t._id} className={`task-card ${isOverdue(t) ? 'pulse-overdue' : ''}`} onClick={() => openEditTask(t)}>
                     <div className="task-card-title">{t.title}</div>
                     <div className="task-card-meta">
                       <span className={`badge badge-${t.priority}`}>{t.priority}</span>
-                      {isOverdue(t) && <span className="badge badge-overdue">Overdue</span>}
+                      {isOverdue(t) && <span className="badge badge-overdue">⚠ Overdue</span>}
                     </div>
                     {t.assignee && (
                       <div className="task-card-assignee">
@@ -197,7 +197,11 @@ export default function ProjectDetail() {
                     )}
                   </div>
                 ))}
-                {colTasks.length === 0 && <div className="empty-state" style={{ padding: 24 }}><p style={{ fontSize: '0.8rem' }}>No tasks</p></div>}
+                {colTasks.length === 0 && (
+                  <div className="empty-state" style={{ padding: '40px 20px', border: '1px dashed var(--border)', borderRadius: 'var(--radius)' }}>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>No tasks here</p>
+                  </div>
+                )}
               </div>
             </div>
           );

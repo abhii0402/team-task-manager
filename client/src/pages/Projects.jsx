@@ -57,7 +57,7 @@ export default function Projects() {
           <button className="btn btn-primary" onClick={() => setShowModal(true)}><HiOutlinePlus /> Create Project</button>
         </div>
       ) : (
-        <div className="projects-grid">
+        <div className="projects-grid stagger-in">
           {projects.map(p => {
             const total = p.taskCounts?.total || 0;
             const done = p.taskCounts?.done || 0;

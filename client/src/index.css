@@ -252,7 +252,29 @@ input, select, textarea { font-family: inherit; }
   display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: white; font-weight: 700;
 }
 .task-card-due { font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; display: flex; align-items: center; gap: 4px; }
-.task-card-due.overdue { color: var(--danger); }
+.task-card-due.overdue { color: var(--danger); font-weight: 600; }
+
+.pulse-overdue {
+  animation: overduePulse 2s infinite;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+@keyframes overduePulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.stagger-in > * {
+  animation: slideUp 400ms ease forwards;
+  opacity: 0;
+}
+
+.stagger-in > *:nth-child(1) { animation-delay: 50ms; }
+.stagger-in > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 150ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 200ms; }
+.stagger-in > *:nth-child(n+5) { animation-delay: 250ms; }
 
 /* ===== TABLE ===== */
 .table-container { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); }
